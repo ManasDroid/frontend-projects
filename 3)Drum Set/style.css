@@ -1,51 +1,92 @@
-html {
-  font-size: 10px;
-  background: url('./concertBanner.jpg') bottom center;
+body{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #07252d;
   background-size: cover;
-}
-
-body,html {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
-.keys {
+.container{
+  width: 100%;
   display: flex;
-  flex: 1;
-  min-height: 100vh;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.keys {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
 }
 
 .key {
-  border: .4rem solid black;
-  border-radius: .5rem;
-  margin: 1rem;
-  font-size: 1.5rem;
+  margin: 1.8rem 3rem;
   padding: 1rem .5rem;
-  transition: all .07s ease;
   width: 10rem;
+  height: 9rem;
+  transition: all .3s ease;
   text-align: center;
-  color: white;
-  background: rgba(0,0,0,0.4);
-  text-shadow: 0 0 .5rem black;
+  border-radius: 150px;
+  background: linear-gradient(145deg, #072830, #062129);
+  box-shadow:  22px 22px 43px #051a1f,
+               -22px -22px 43px #09303b;
+  
 }
 
-.playing {
-  transform: scale(1.1);
-  border-color: #ffc600;
-  box-shadow: 0 0 1rem #ffc600;
+span{
+  font-size: 1.5rem;
 }
 
 kbd {
-  display: block;
-  font-size: 4rem;
+  margin-top: 15px;
+ font-size: 6em;
+ font-weight: 800;
+ color: rgb(128, 126, 126);
+ display: block;
+ font-size: 4rem;
+ transition: 0.5s;
 }
 
 .sound {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: .1rem;
-  color: #ffc600;
+  color: #055166;
+  transition: all .3s ease;
+}
+
+.playing {
+  transform: scale(1);
+  border-radius: 150px;
+background: #07252d;
+box-shadow: inset 22px 22px 43px #051a1f,
+            inset -22px -22px 43px #09303b;
+}
+.playing kbd{
+  color: #00b3ff;
+  text-shadow: 0 0 10px #00b3ff,
+               0 0 20px #00b3ff,
+               0 0 40px #00b3ff
+               0 0 80px #00b3ff,
+               0 0 120px #00b3ff;
+}
+.playing .sound{
+  color: #02c8ff;
+  text-shadow: 0 0 10px #00b3ff,
+               0 0 20px #00b3ff,
+               0 0 40px #00b3ff
+               0 0 80px #00b3ff,
+               0 0 120px #00b3ff;
 }
