@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="style.css">
+        <title>Basic Calculator</title>
+        <style>
+            body{
+                font-family:sans-serif;
+                background-color: rgb(214, 214, 214);
+            }
+            .calculator{
+                width: 300px;
+                height: 500px;
+                background: rgb(214, 214, 214);
+                margin: 80px auto;
+                border-radius: 10px;
+                box-shadow:  5px 5px 10px #b6a9a9,-5px -5px 10px 0 #fff;
+                padding-top: 1px;
+                box-sizing: border-box;
+            }
+            #result{
+                height: 80px;
+                background: transparent;
+                box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
+                padding: 15px;
+                font-weight: 600;
+                margin:30px;
+                border-radius: 20px;
+            }
+            #history{
+                text-align: right;
+                height: 20px;
+                font-size: 15px;
+                color: #919191;
+            }
+            #output{
+                text-align: right;
+                height: 60px;
+                font-size: 25px;
+            }
+            button{
+                margin: 15px 10px 0 15px;
+                width: 42px;
+                height: 42px;
+                border: none;
+                outline: none;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                border-radius: 8px;
+                background: rgb(214, 214, 214);
+                box-shadow: 5px 5px 10px #b6acac,-5px -5px 10px #f4f4f4 ;
+                display: inline-block;
+                border-radius: 50px;
+            }
+            button:active{
+                box-shadow: inset 1px 1px 2px #babeec,inset -1px -1px 2px #fff;
+            }
+            #clear{
+                background: red;
+                color: white;
+            }
+            .keyboard{
+                align-items: center;
+            }
+            .operator{
+                background: black;
+                color: white;
+            }
+            .empty{
+                display: none;
+            }
+            button:nth-child(3){
+                text-align: justify;
+                font-size: 15px;
+            }
+            button:nth-child(4){
+                background-color: #20b2aa;
+            }
+            button:nth-child(8){
+                background-color: #ffa500;
+            }
+            button:nth-child(12){
+            background-color: #f08080;
+            }
+            button:nth-child(16){
+                background-color: #7d93e0;
+            }
+            button:nth-child(20){
+                background-color: #9477af;
+            } 
+        </style>
+    </head>
+    <body>
+        <div class="calculator">
+            <div id="result">
+                <div id="history">
+                    <p id="history-value"></p>
+                </div>
+                <div id="output">
+                    <p id="output-value"></p>
+                </div>
+            </div>
+            <div class="keyboard">
+                <button class="operator" id="clear">C</button>
+                <button class="operator" id="backspace">CE</button>
+                <button class="operator" id="%">mod</button>
+                <button class="operator" id="/">&#247;</button>
+                <button class="number" id="7">7</button>
+                <button class="number" id="8">8</button>
+                <button class="number" id="9">9</button>
+                <button class="operator" id="*">&times;</button>
+                <button class="number" id="4">4</button>
+                <button class="number" id="5">5</button>
+                <button class="number" id="6">6</button>
+                <button class="operator" id="-">&minus;</button>
+                <button class="number" id="1">1</button>
+                <button class="number" id="2">2</button>
+                <button class="number" id="3">3</button>
+                <button class="operator" id="+">&plus;</button>
+                <button class="operator" id=".">.</button>
+                <button class="number" id="0">0</button>
+                <button class="number" id="00">00</button>
+                <button class="operator" id="=">&equals;</button>
+            </div>
+        </div>
+        <script>
+            function getHistory(){
+	            return document.getElementById("history-value").innerText;
+            }
+            function printHistory(num){
+                document.getElementById("history-value").innerText=num;
+            }
+            function getOutput(){
+                return document.getElementById("output-value").innerText;
+            }
+            function printOutput(num){
+                if(num==""){
+                    document.getElementById("output-value").innerText=num;
+                }
+                else{
+                    document.getElementById("output-value").innerText=getFormattedNumber(num);
+                }	
+            }
+            function getFormattedNumber(num){
+                if(num=="-"){
+                    return "";
+                }
+                var n = Number(num);
+                var value = n.toLocaleString("en");
+                return value;
+            }
+            function reverseNumberFormat(num){
+                return Number(num.replace(/,/g,''));
+            }
+            var operator = document.getElementsByClassName("operator");
+            for(var i =0;i<operator.length;i++){
+                operator[i].addEventListener('click',function(){
+                    if(this.id=="clear"){
+                        printHistory("");
+                        printOutput("");
+                    }
+                    else if(this.id=="backspace"){
+                        var output=reverseNumberFormat(getOutput()).toString();
+                        if(output){//if output has a value
+                            output= output.substr(0,output.length-1);
+                            printOutput(output);
+                        }
+                    }
+                    else{
+                        var output=getOutput();
+                        var history=getHistory();
+                        if(output==""&&history!=""){
+                            if(isNaN(history[history.length-1])){
+                                history = history.substr(0,history.length-1);
+                            }
+                        }
+                        if(output!="" || history!=""){
+                            output = output =="" ?output:reverseNumberFormat(output);
+                            history = history + output;
+                            if(this.id=="="){
+                                var result=eval(history);
+                                printOutput(result);
+                                printHistory("");
+                            }
+                            else{
+                                history=history+this.id;
+                                printHistory(history);
+                                printOutput("");
+                            }
+                        }
+                    }
+                    
+                });
+            }
+            var number = document.getElementsByClassName("number");
+            for(var i =0;i<number.length;i++){
+                number[i].addEventListener('click',function(){
+                    var output=reverseNumberFormat(getOutput());
+                    if(output!=NaN){ //if output is a number
+                        output=output+this.id;
+                        printOutput(output);
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
