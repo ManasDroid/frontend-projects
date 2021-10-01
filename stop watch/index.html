@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d6a8ce8d77.js" crossorigin="anonymous"></script>
+    <title>Timer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(to left, #607d8b,#d459cb);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            /*font-family: 'Orbitron', sans-serif;*/
+            font-weight: 300;
+        }
+        .mybody{
+            background:linear-gradient(to right, #414345, #232526);
+        }
+        .wrap,.wrapdark{
+        display: inline-block;
+        min-width: 360px;
+        min-height: 400px;
+        padding: 50px 15px;
+        background-color: #fff;
+        box-shadow: 0 5px 25px #0000004a;
+        border-radius: 8px;
+        text-align: center;
+        }
+        .wrapdark{
+            background-color: black;
+        }
+        #timer{
+        position: relative;
+        width: 250px;
+        height: 250px;
+        line-height: 250px;
+        border-radius: 50%;
+        font-size: 32px;
+        margin: 0 auto;
+        background-color: #fff;
+        }
+        p{
+        font-weight: 400;
+        color: gray;
+        padding: 30px 0;
+        }
+        .option a{
+        display: inline-block;
+        margin: 0 10px;
+        text-decoration: none;
+        }
+        .play,#play,#reset{
+        width: 55px;
+        height: 55px;
+        line-height: 55px;
+        border-radius: 50px;
+        transition: all ease 0.1s;
+        }
+        .lightplay, .lightstop, .lightreset{
+            color: #fff !important;
+            background: linear-gradient(45deg, #ff88fb,#ff00ec) !important;
+            box-shadow: 0 8px 25px #bf5fc045,
+                        0 8px 25px #ff00ec50 
+                        !important;
+        }
+        .darkplay, .darkstop, .darkreset {
+            background: transparent ;
+            color: #fff;
+            box-shadow: 0 0 10px #2196f3,
+                        0 0 40px #2196f3,
+                        0 0 80px #2196f3;
+        }
+        #stop{
+        padding: 15px 20px;
+        border-radius: 50px;
+        font-weight: 400;
+        /*box-shadow: 0 8px 25px #bf5fc045,0 8px 25px #ff00ec50;*/
+        transition: all ease 0.1s;
+        }
+        #play:active,#stop:active,#reset:active{
+        transform: scale(0.95);
+        }
+        #stop .fa{
+        margin-right: 5px;
+        }
+        .fa-play{
+        padding-left: 5px;
+        }
+        .pause .fa-play,.fa-pause{
+        display: none;
+        }
+        .pause .fa-pause{
+        display: inline-block;
+        }
+        /*Circle design*/
+
+        #timer svg{
+        position: absolute;
+        left: 0;
+        border-radius: 50%;
+        height: 250px;
+        width: 250px;
+        }
+        #timer{
+            box-shadow: 0 0 10px #d459cb,
+                        0 0 40px #d459cb,
+                        0 0 80px #d459cb ;
+        }
+        .darktimer{
+            box-shadow: 0 0 10px #2196f3,
+                        0 0 40px #2196f3,
+                        0 0 80px #2196f3 !important;
+        }
+        #animateCircle.addAnimation{
+            stroke-dasharray: 770;
+            stroke-dashoffset: -770;
+            animation: animateCircle 60s linear infinite;
+            animation-play-state: paused;
+        }
+        @keyframes animateCircle {
+            from{
+                stroke-dashoffset: 0;
+            }
+        }
+        .defaultCircle{
+        opacity: 0.3;
+        }
+
+        /*Dark light mode*/
+
+        input[type="checkbox"]{
+            display: none;
+        }
+        label{
+            position: relative;
+            left: 35%;
+            top: -20px;
+            height: 50px;
+            width: 80px;
+            border: 2px solid gray;
+            border-radius: 30px;
+            padding: 15px;
+            cursor: pointer;
+            box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.8);;
+        }
+        .fa-sun{
+            color: orange;
+            font-size: 20px;
+            text-shadow: 0px 0px 20px orange;
+            transform: translateX(25px);
+            transition: .3s;
+            position: relative;
+            right: -10px;
+        }
+        .fa-moon{
+            color:white;
+            font-size: 20px;
+            text-shadow: 0px 0px 20px whitesmoke;
+            transform: translateX(0px);
+            opacity: 0;
+            transform: 0.5s;
+        }
+        #switch-button:checked ~ label > .fa-sun{
+            opacity:0;
+            transform:translateX(0px);
+        }
+        #switch-button:checked ~ label > .fa-moon{
+            opacity:1;
+            transform:translateX(-25px);
+        }
+        #switch-button:checked ~ label{
+            box-shadow: 0px 0px 15px 5px whitesmoke;
+        }  
+
+    </style>
+</head>
+<body>
+   
+    <div class="wrap">
+        <input type="checkbox"  id="switch-button" onclick="darkLight()">
+        <label for="switch-button">
+            <i class="fa fa-sun"></i>
+            <i class="fa fa-moon"></i>
+        </label>
+        <div id="timer">
+            <svg width="260" height="260">
+                 <circle class="defaultCircle" cx="125" cy="125" r="120" style="stroke: #ff88fb;" stroke-width="10" fill="none" stroke-linecap="round"/>
+                 <circle id="animateCircle"  cx="125" cy="125" r="120" style="stroke:#d459cb"; stroke-width="10" fill="none" stroke-linecap="round"/>
+            </svg>
+            <span id="hour">00</span>
+            <span id="minute">00</span>
+            <span id="second">00</span>
+            <span id="millisecond">00</span>
+        </div>
+        <p>Start now</p>
+        <div class="option">
+            <a  id="play" class="lightplay" onclick="playFunc();"> <i class="fa fa-play"></i><i class="fa fa-pause"></i></a>
+            <a  id="stop" class="lightstop" onclick="stopFunc();"> <i class="fa fa-stop"> Stop </i></a>
+            <a  id="reset" class="lightreset" onclick="resetFunc();"> <i class="fa fa-undo"></i></a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var base;
+        var playPause=0;
+        function playFunc(){
+            playPause=playPause+1;
+            if(playPause === 1)
+            {
+                play();
+                document.getElementById("play").classList.add("pause");
+                $("#animateCircle").addClass("addAnimation");
+                $("#animateCircle.addAnimation").css("animation-play-state","running");
+            }
+            else if(playPause === 2)
+            {
+                document.getElementById("play").classList.remove("pause");
+                $("#animateCircle").css("animation-play-state","paused");
+                playPause=0;
+                stop();
+            }
+        }
+        function play(){
+         base=setInterval(timer, 10);
+        }
+        function stop(){
+            clearInterval(base);
+        }
+        var millisecond=0;
+        var second=0;
+        var minute=0;
+        var hour=0;
+
+        var millisecondVal=0;
+        var secondVal=0;
+        var minuteVal=0;
+        var hourVal=0;
+
+        function timer()
+        {
+            millisecondVal=updateTime(millisecond);
+            secondVal=updateTime(second);
+            minuteVal=updateTime(minute);
+            hourVal=updateTime(hour);
+            millisecond = ++millisecond;
+            if(millisecond === 100)
+            {
+                 millisecond = 0;
+                second = ++second;
+            }
+            if(second == 60)
+            {
+                minute = ++minute;
+                second = 0;
+            }
+            if(minute == 60)
+            {
+                minute = 0;
+                hour = ++hour;
+            }
+            $("#millisecond").text(millisecondVal);
+            $("#second").text(secondVal);
+            $("#minute").text(minuteVal);
+            $("#hour").text(hourVal);
+        }
+
+        function updateTime(i){
+            if(i < 10)
+            {
+                i="0"+i;
+            }
+             return i;
+        }
+        function resetFunc(){
+            millisecond=0;
+            second=0;
+            minute=0;
+            hour=0;
+            $("#millisecond").text("00");
+            $("#second").text("00");
+            $("#minute").text("00");
+            $("#hour").text("00");
+
+            if(!$("#play").hasClass("pause")){
+                $("#animateCircle").removeClass("addAnimation");
+            }
+            else
+            {
+                $("#animateCircle").removeClass("addAnimation");
+                setTimeout(function(){
+                    $("#animateCircle").addClass("addAnimation");
+                }, 10);
+            }
+        }
+        function stopFunc(){
+            clearInterval(base);
+            resetFunc();
+
+            if($("#play").hasClass("pause"))
+            {
+                $("#animateCircle").removeClass("addAnimation");
+                playFunc();
+            }
+        }
+        function darkLight()
+        {
+            var btn=document.getElementById("switch-button");
+            var count=0;
+            if(btn.checked)
+            {
+                count=1;
+            }
+            else{
+                count=0;
+            }
+             if(count===1)
+            {
+                document.body.classList.add("mybody");
+                document.getElementsByTagName("DIV")[0].setAttribute("class","wrapdark");
+                document.getElementsByTagName("A")[0].setAttribute("class","darkplay");
+                document.getElementsByTagName("A")[1].setAttribute("class","darkstop");
+                document.getElementsByTagName("A")[2].setAttribute("class","darkreset");
+                document.getElementById("timer").setAttribute("class","darktimer");
+                document.getElementById("animateCircle").style.stroke="#2196f3";
+                document.getElementsByClassName("defaultCircle").style.stroke="#2196f3";
+                
+                
+                
+            }
+            if(count===0)
+            {
+                document.body.classList.remove("mybody");
+                document.getElementsByTagName("DIV")[0].setAttribute("class","wrap");
+                document.getElementsByTagName("A")[0].setAttribute("class","lightplay");
+                document.getElementsByTagName("A")[1].setAttribute("class","lightstop");
+                document.getElementsByTagName("A")[2].setAttribute("class","lightreset");
+                document.getElementById("timer").removeAttribute("class");
+                document.getElementById("animateCircle").style.stroke="#d459cb";
+                document.getElementsByClassName("defaultCircle").style.stroke="#ff88fb";
+            }
+        }
+    </script>
+</body>
+</html>
