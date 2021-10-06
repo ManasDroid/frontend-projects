@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/tailwind.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div  class="h-screen flex" id="app">
+      <!-- <div :class="sidebarClose ? 'hidden' : 'block'" class="fixed bg-black opacity-50 transition-opacity inset-0 lg:hidden"></div> -->
+      <div
+        :class="sidebarClose ? '-translate-x-full ease-in transition-medium' : 'translate-x-0 ease-out transition-medium'"
+        class="
+          fixed
+          inset-y-0
+          z-30
+          left-0
+          w-64
+          px-8
+          py-4
+          bg-gray-100
+          border-r
+          overflow-auto
+          lg:static
+          lg:inset-auto
+          lg:translate-x-0
+        "
+      >
+        <div class="-mx-3 pl-3 pr-1 flex items-center justify-between">
+          <span>
+            <img src="./img/p-logo.png" alt="" />
+          </span>
+          <span>
+            <button @click="sidebarClose=false" class="text-gray-700 lg:hidden">
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  stroke-linecap="round"
+                  d="M0 0h24v24H0z"
+                />
+                <path
+                  d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                />
+              </svg>
+            </button>
+          </span>
+        </div>
+
+        <nav class="mt-8">
+          <!-- issues area -->
+          <h3
+            class="text-xs font-semibold text-gray-600 uppercase tracking-wide"
+          >
+            Issues
+          </h3>
+          <div class="mt-2 -mx-3">
+            <!-- active nav tab -->
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                bg-gray-200
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-900">All</span>
+              <span class="text-xs font-semibold text-gray-700">36</span>
+            </a>
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700"
+                >Assigned to me</span
+              >
+              <span class="text-xs font-semibold text-gray-700">2</span>
+            </a>
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700"
+                >Created by me</span
+              >
+              <span class="text-xs font-semibold text-gray-700">1</span>
+            </a>
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700">Archived</span>
+            </a>
+          </div>
+        </nav>
+        <nav class="mt-8">
+          <!-- issues area -->
+          <h3
+            class="text-xs font-semibold text-gray-600 uppercase tracking-wide"
+          >
+            Tags
+          </h3>
+          <div class="mt-2 -mx-3">
+            <!-- inactive nav tab for tags without notification number -->
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700">Bug</span>
+            </a>
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700"
+                >Feature Request</span
+              >
+            </a>
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700">Marketing</span>
+            </a>
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700">v2.0</span>
+            </a>
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700">Enhancement</span>
+            </a>
+            <a
+              href="#"
+              class="
+                flex
+                justify-between
+                items-center
+                px-3
+                py-2
+                text-sm
+                font-medium
+                rounded-lg
+              "
+            >
+              <span class="text-sm font-medium text-gray-700">Design</span>
+            </a>
+            <button
+              class="
+                mt-2
+                -ml-1
+                flex
+                items-center
+                text-sm
+                font-medium
+                text-gray-600
+              "
+            >
+              <svg
+                class="h-5 w-5 text-gray-500"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  d="M12 7v10m5-5H7"
+                />
+              </svg>
+              <span class="ml-1">New Project</span>
+            </button>
+          </div>
+        </nav>
+      </div>
+      <div class="flex-1 min-w-0 flex flex-col bg-white">
+        <div class="flex-shrink-0 sm:border-b-2  sm:border-gray-200">
+          <header>
+            <div>
+              <div
+                class="
+                  px-6
+                  flex
+                  justify-between
+                  items-center
+                  py-3
+                  border-b border-gray-200
+                "
+              >
+                <div class="min-w-0 flex-1 flex">
+                  <button
+                    @click="sidebarClose = true"
+                    class="text-gray-600 sm:hidden"
+                  >
+                    <svg
+                      class="h-6 w-6"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-width="0"
+                        stroke-linecap="round"
+                        fill="none"
+                        d="M0 0h24v24H0z"
+                      />
+                      <path d="M3 4h18v2H3V4zm0 7h12v2H3v-2zm0 7h18v2H3v-2z" />
+                    </svg>
+                  </button>
+                  <div class="flex-shink-1 ml-3 relative w-64 lg:ml-0">
+                    <span
+                      class="absolute inset-y-0 left-0 pl-2 flex items-center"
+                      ><svg
+                        class="h-6 w-6 text-gray-500"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        /></svg
+                    ></span>
+
+                    <input
+                      class="
+                        block
+                        w-full
+                        rounded-md
+                        border border-gray-400
+                        pl-10
+                        pr-4
+                        py-2
+                        text-sm text-gray-900
+                        placeholder-gray-600
+                      "
+                      placeholder="Search"
+                    />
+                  </div>
+                </div>
+                <div class="ml-6 flex-shrink-0 flex items-center">
+                  <button>
+                    <svg
+                      class="
+                        h-6
+                        w-6
+                        -mx-1
+                        -my-7
+                        text-gray-500
+                        feather feather-bell
+                      "
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="15"
+                      height="15"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"
+                      />
+                    </svg>
+                  </button>
+                  <button class="ml-6">
+                    <img
+                      class="h-9 w-9 rounded-full object-cover"
+                      src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                      alt="profileimage"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 flex item-center justify-between py-2">
+              <div class="sm:flex sm:items-center">
+                <h2 class="text-2xl font-semibold text-gray-900 leading-tight">
+                  All Issues
+                </h2>
+                <div class="mt-1 flex items-center sm:mt-0 sm:ml-6">
+                  <span class="rounded-full border-2 border-white"
+                    ><img
+                      class="h-6 w-6 rounded-full object-cover"
+                      src="https://images.unsplash.com/photo-1613145997970-db84a7975fbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                      alt=""
+                  /></span>
+                  <span class="-ml-2 rounded-full border-2 border-white"
+                    ><img
+                      class="h-6 w-6 rounded-full object-cover"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                      alt=""
+                  /></span>
+                  <span class="-ml-2 rounded-full border-2 border-white"
+                    ><img
+                      class="h-6 w-6 rounded-full object-cover"
+                      src="https://images.unsplash.com/photo-1546791737-97c81ec08179?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                      alt=""
+                  /></span>
+                  <span class="-ml-2 rounded-full border-2 border-white"
+                    ><img
+                      class="h-6 w-6 rounded-full object-cover"
+                      src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                      alt=""
+                  /></span>
+                </div>
+              </div>
+              <div class="flex">
+                <span
+                  class="
+                    hidden
+                    sm:inline-flex
+                    p-1
+                    border
+                    bg-gray-200
+                    rounded-md
+                  "
+                >
+                  <button class="-my-px px-2 py-1 rounded">
+                    <svg
+                      class="h-6 w-6 text-gray-500"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                    >
+                      <path fill="none" d="M0 0h24v24H0z" />
+                      <path
+                        d="M3 4h18v2H3V4zm0 15h18v2H3v-2zm0-5h18v2H3v-2zm0-5h18v2H3V9z"
+                      />
+                    </svg>
+                  </button>
+                  <button class="-my-px px-2 py-1 rounded bg-white shadow">
+                    <svg
+                      class="h-6 w-6 text-gray-500"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                    >
+                      <path fill="none" d="M0 0h24v24H0z" />
+                      <path
+                        d="M11 5H5v14h6V5zm2 0v14h6V5h-6zM4 3h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+                <button
+                  class="
+                    flex
+                    items-center
+                    ml-5
+                    pl-2
+                    pr-4
+                    py-2
+                    text-sm
+                    font-medium
+                    text-white
+                    bg-gray-800
+                    rounded-md
+                    hover:bg-gray-700
+                  "
+                >
+                  <svg
+                    class="h-6 w-6 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      d="M12 7v10m5-5H7"
+                    />
+                  </svg>
+                  <span class="ml-1">New Issue</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex px-4  p-1 border bg-gray-200 border-t border-b sm:hidden">
+              <button class="inline-flex justify-center w-1/2  px-2 py-1 rounded">
+                <svg
+                  class="h-6 w-6 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M3 4h18v2H3V4zm0 15h18v2H3v-2zm0-5h18v2H3v-2zm0-5h18v2H3V9z"
+                  />
+                </svg>
+                <span class="text-sm font-medium text-gray-600 leading-none" >List</span>
+                
+              </button>
+              <button class="inline-flex justify-center w-1/2  px-2 py-1 rounded bg-white shadow">
+                <svg
+                  class="h-6 w-6 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                >
+                  <path fill="none" d="M0 0h24v24H0z" />
+                  <path
+                    d="M11 5H5v14h6V5zm2 0v14h6V5h-6zM4 3h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1z"
+                  />
+                </svg>
+                <span class="text-sm font-medium text-gray-900 leading-none">Board</span>
+              </button>
+            </div>
+          </header>
+        </div>
+
+        <div class="flex-1 overflow-auto">
+          <main class="p-3 h-full inline-flex overflow-hidden">
+            <div
+              class="
+                ml-3
+                flex-shrink-0 flex flex-col
+                w-80
+                bg-gray-100
+                rounded-md
+              "
+            >
+              <h3
+                class="
+                  flex-shrink-0
+                  pt-3
+                  pb-1
+                  px-3
+                  text-sm
+                  font-medium
+                  text-gray-900
+                "
+              >
+                Backlogs
+              </h3>
+              <div class="flex-1 min-h-0 overflow-y-auto">
+                <ul class="pt-1 pb-3 px-3">
+                  <li>
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Adding responsiveness to the websites
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Design using Tailwind resources for forthcoming
+                          projects
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-purple-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-purple-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-purple-900"
+                              >Design</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Meeting with client on design structure
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <!-- <div class="mt-2">
+                        <span
+                          class="
+                            px-2
+                            py-1
+                            leading-tight
+                            inline-flex
+                            items-center
+                            bg-green-100
+                            rounded
+                          "
+                        >
+                          <svg
+                            class="h-2 w-2 text-green-500"
+                            viewBox="0 0 6 6"
+                            fill="currentColor"
+                          >
+                            <circle cx="3" cy="3" r="3" />
+                          </svg>
+                          <span class="ml-1 text-sm font-medium text-green-900"
+                            >Feature Request</span
+                          >
+                        </span>
+                      </div> -->
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div
+              class="
+                ml-3
+                flex-shrink-0 flex flex-col
+                w-80
+                bg-gray-100
+                rounded-md
+              "
+            >
+              <h3
+                class="
+                  flex-shrink-0
+                  pt-3
+                  pb-1
+                  px-3
+                  text-sm
+                  font-medium
+                  text-gray-900
+                "
+              >
+                In Progress
+              </h3>
+              <div class="flex-1 min-h-0 overflow-y-auto">
+                <ul class="pt-1 pb-3 px-3">
+                  <li>
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Adding responsiveness to the websites
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Design using Tailwind resources for forthcoming
+                          projects
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-purple-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-purple-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-purple-900"
+                              >Design</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Meeting with client on design structure
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <!-- <div class="mt-2">
+                        <span
+                          class="
+                            px-2
+                            py-1
+                            leading-tight
+                            inline-flex
+                            items-center
+                            bg-green-100
+                            rounded
+                          "
+                        >
+                          <svg
+                            class="h-2 w-2 text-green-500"
+                            viewBox="0 0 6 6"
+                            fill="currentColor"
+                          >
+                            <circle cx="3" cy="3" r="3" />
+                          </svg>
+                          <span class="ml-1 text-sm font-medium text-green-900"
+                            >Feature Request</span
+                          >
+                        </span>
+                      </div> -->
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Add code to Organizations's Git for review
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div
+              class="
+                ml-3
+                flex-shrink-0 flex flex-col
+                w-80
+                bg-gray-100
+                rounded-md
+              "
+            >
+              <h3
+                class="
+                  flex-shrink-0
+                  pt-3
+                  pb-1
+                  px-3
+                  text-sm
+                  font-medium
+                  text-gray-900
+                "
+              >
+                Ready for Review
+              </h3>
+              <div class="flex-1 min-h-0 overflow-y-auto">
+                <ul class="pt-1 pb-3 px-3">
+                  <li>
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Adding responsiveness to the websites
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Design using Tailwind resources for forthcoming
+                          projects
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-purple-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-purple-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-purple-900"
+                              >Design</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Meeting with client on design structure
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <!-- <div class="mt-2">
+                        <span
+                          class="
+                            px-2
+                            py-1
+                            leading-tight
+                            inline-flex
+                            items-center
+                            bg-green-100
+                            rounded
+                          "
+                        >
+                          <svg
+                            class="h-2 w-2 text-green-500"
+                            viewBox="0 0 6 6"
+                            fill="currentColor"
+                          >
+                            <circle cx="3" cy="3" r="3" />
+                          </svg>
+                          <span class="ml-1 text-sm font-medium text-green-900"
+                            >Feature Request</span
+                          >
+                        </span>
+                      </div> -->
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Add code to Organizations's Git for review
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Add code to Organizations's Git for review
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Add code to Organizations's Git for review
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div
+              class="
+                ml-3
+                flex-shrink-0 flex flex-col
+                w-80
+                bg-gray-100
+                rounded-md
+              "
+            >
+              <h3
+                class="
+                  flex-shrink-0
+                  pt-3
+                  pb-1
+                  px-3
+                  text-sm
+                  font-medium
+                  text-gray-900
+                "
+              >
+                Done
+              </h3>
+              <div class="flex-1 min-h-0 overflow-y-auto">
+                <ul class="pt-1 pb-3 px-3">
+                  <li>
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Adding responsiveness to the websites
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Design using Tailwind resources for forthcoming
+                          projects
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-purple-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-purple-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-purple-900"
+                              >Design</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Add code to Organizations's Git for review
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mt-3">
+                    <a href="#" class="block p-5 rounded-md bg-white shadow">
+                      <div class="flex justify-between">
+                        <p
+                          class="text-sm font-medium leading-snug text-gray-900"
+                        >
+                          Add code to Organizations's Git for review
+                        </p>
+                        <span>
+                          <img
+                            class="h-6 w-6 rounded-full object-cover"
+                            src="https://images.unsplash.com/photo-1609010697446-11f2155278f0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=144&h=144&q=80"
+                            alt=""
+                          />
+                        </span>
+                      </div>
+                      <div class="flex justify-between items-baseline">
+                        <div class="text-sm text-gray-600">
+                          <time datetime="2021-06-04"> Jun 4 </time>
+                        </div>
+                        <div class="mt-2">
+                          <span
+                            class="
+                              px-2
+                              py-1
+                              leading-tight
+                              inline-flex
+                              items-center
+                              bg-green-100
+                              rounded
+                            "
+                          >
+                            <svg
+                              class="h-2 w-2 text-green-500"
+                              viewBox="0 0 6 6"
+                              fill="currentColor"
+                            >
+                              <circle cx="3" cy="3" r="3" />
+                            </svg>
+                            <span
+                              class="ml-1 text-sm font-medium text-green-900"
+                              >Feature Request</span
+                            >
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@^2.6/dist/vue.min.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          sidebarClose: false,
+        },
+      });
+    </script>
+  </body>
+</html>
